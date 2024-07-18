@@ -2,7 +2,7 @@
 title: "Hello Readers..."
 description: "Just want to say hi uwu"
 date: 2024-07-18T16:07
-thumb: https://picsum.photos/seed/picsum/400/200
+thumb: test.jpg
 tags: ["testing"]
 ---
 
