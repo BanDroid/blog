@@ -7,30 +7,34 @@ class SearchPosts {
   async init() {
     const params = new URL(location.href).searchParams;
 
-    this.start = Number(params.get('start')) || 1;
-    this.size = Number(params.get('size')) || 12;
+    this.start = Number(params.get("start")) || 1;
+    this.size = Number(params.get("size")) || 12;
 
-    this.posts = await fetch('../index.json').then((res) => {
+    this.posts = await fetch("../index.json").then((res) => {
       return res.json();
     });
 
-    this.render(params.get('q'));
+    this.render(params.get("q"));
   }
 
   render(query) {
-    const wrapperEl = document.getElementById('wrapper');
-    const searchBoxEl = document.getElementById('searchbox');
-    const infoEl = document.getElementById('info');
+    const wrapperEl = document.getElementById("wrapper");
+    const searchBoxEl = document.getElementById("searchbox");
+    const infoEl = document.getElementById("info");
 
-    query = typeof query === 'string' ? query.toLowerCase() : '';
+    query = typeof query === "string" ? query.toLowerCase() : "";
 
-    history.replaceState(null, null, `?q=${query}&start=${this.start}&size=${this.size}`);
+    history.replaceState(
+      null,
+      null,
+      `?q=${query}&start=${this.start}&size=${this.size}`
+    );
 
     searchBoxEl.value = query;
-    wrapperEl.innerHTML = '';
+    wrapperEl.innerHTML = "";
 
-    if (query === '') {
-      infoEl.textContent = 'Enter keywords in the search box above';
+    if (query === "") {
+      infoEl.textContent = "Enter keywords in the search box above";
 
       return;
     }
@@ -52,8 +56,11 @@ class SearchPosts {
     const slicedPosts = matchedPosts.slice(offset, offset + size);
 
     const lastPostIndex = offset + slicedPosts.length;
-    const showingRange = this.start < lastPostIndex || this.start !== 1 ? `${this.start} to ${lastPostIndex}` : this.start;
-    const extraS = matchedPosts.length > 1 ? 's' : '';
+    const showingRange =
+      this.start < lastPostIndex || this.start !== 1
+        ? `${this.start} to ${lastPostIndex}`
+        : this.start;
+    const extraS = matchedPosts.length > 1 ? "s" : "";
 
     infoEl.textContent = `Showing ${showingRange} of ${matchedPosts.length} result${extraS} found for "${query}"`;
 
@@ -61,11 +68,11 @@ class SearchPosts {
       const { url, title, date } = post;
 
       wrapperEl.innerHTML += `
-        <div class="w-full sm:w-1/2 md:w-1/3 self-stretch p-2 mb-2">
+        <div class="w-full sm:w-1/2 md:w-1/3 self-stretch p-2 mb-4">
           <a href="${url}">
-            <div class="rounded shadow-md h-full px-6 py-5">
+            <div class="rounded px-6 py-5 bg-background dark:bg-background h-full opacity-90 hover:opacity-100 cursor-pointer">
               <div class="font-semibold text-lg mb-2">${title}</div>
-              <p class="text-gray-700 mb-1" title="Published date">${date}</p>
+              <p class="text-xs opacity-70 mb-1" title="Published date">${date}</p>
             </div>
           </a>
         </div>
@@ -74,15 +81,18 @@ class SearchPosts {
   }
 }
 
-if (location.pathname === '/search/') {
-  const searchBoxEl = document.getElementById('searchbox');
+if (location.pathname === "/search/") {
+  const searchBoxEl = document.getElementById("searchbox");
   const searchPosts = new SearchPosts();
 
   searchPosts.init();
 
-  searchBoxEl.addEventListener('keyup', debounce(function() {
-    searchPosts.render(this.value);
-  }, 400));
+  searchBoxEl.addEventListener(
+    "keyup",
+    debounce(function () {
+      searchPosts.render(this.value);
+    }, 400)
+  );
 }
 
 // https://github.com/sindresorhus/p-debounce
@@ -90,7 +100,7 @@ function debounce(fn, wait) {
   let timer;
   let resolveList = [];
 
-  return function(...arguments_) {
+  return function (...arguments_) {
     return new Promise((resolve) => {
       clearTimeout(timer);
 
