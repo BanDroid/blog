@@ -1,0 +1,19 @@
+[
+  {
+    "label": "Home",
+    "url": "/"
+  },
+  {
+    "label": "About",
+    "url": "/about"
+  },
+  {
+    "label": "Tags",
+    "url": "/tags"
+  },
+  {
+    "label": "GitHub",
+    "url": "https://github.com/daflh/vredeburg",
+    "newTab": true
+  }
+]

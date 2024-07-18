@@ -1,0 +1,17 @@
+---
+layout: default
+title: Tag List
+permalink: "tags/index.html"
+---
+
+<h1 class="text-3xl leading-normal font-bold mt-0 mb-7 text-center">{{ title }}</h1>
+<div class="flex justify-center flex-wrap gap-4">
+    {% for name, length in collections.tagList %}
+    <a href="{{ '/tags/' | url }}{{ name }}"
+        class="inline-block px-4 py-2 bg-primary text-primary-foreground font-medium rounded-full opacity-80 hover:opacity-100">
+        {{ name | capitalize }}
+        <span class="px-2 py-1 ml-1 text-xs font-semibold bg-primary-foreground text-primary rounded-full">{{ length
+            }}</span>
+    </a>
+    {% endfor %}
+</div>
