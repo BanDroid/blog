@@ -61,7 +61,8 @@ document.addEventListener(
     menu.classList.add("!duration-300");
     document.getElementById("header").classList.add("!duration-300");
     if (location.pathname.startsWith("/search")) {
-      searchBox.classList.add("hidden md:hidden");
+      searchBox.classList.add("hidden");
+      searchBox.classList.add("md:hidden");
     }
   },
   false
