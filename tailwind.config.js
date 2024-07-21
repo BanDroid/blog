@@ -31,8 +31,9 @@ module.exports = {
             },
             blockquote: {
               fontWeight: "normal",
+              fontStyle: "normal",
               color: theme("colors.foreground"),
-              backgroundColor: theme("colors.neutral.900"),
+              backgroundColor: theme("colors.neutral.950"),
               borderRadius: ".25rem",
             },
             "blockquote p:first-of-type::before": {

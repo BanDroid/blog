@@ -5,10 +5,10 @@ module.exports = {
     permalink: (data) => `${data.page.fileSlug}/index.html`,
     thumb: (data) => {
       if (data.thumb) {
-        if (data.thumb.search(/^https?:\/\//) !== -1) {
+        if (data.thumb.startsWith("https://")) {
           return data.thumb;
         }
-        return `/assets/img/${data.thumb}`;
+        return data.site.url + `/assets/img/${data.thumb}`;
       } else {
         return false;
       }
