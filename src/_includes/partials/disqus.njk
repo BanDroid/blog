@@ -1,5 +1,5 @@
 <div id="disqus_thread"></div>
-<script>
+<script defer>
     let disqusLoaded = false;
     let disqus_config = function () {
         this.page.url = '{{ site.url | url }}{{ page.url }}';
@@ -13,7 +13,8 @@
             (d.head || d.body).appendChild(s);
         }
     }
-    if(!!window.IntersectionObserver) {
+    loadComments();
+    /* if(!!window.IntersectionObserver) {
         const disqusEl = document.getElementById('disqus_thread');
         const intersectionObserver = new IntersectionObserver(function(entries, observer) {
             if (entries && entries[0] && entries[0].isIntersecting) {
@@ -22,5 +23,5 @@
             }
         });
         intersectionObserver.observe(disqusEl);
-    }
+    } */
 </script>
